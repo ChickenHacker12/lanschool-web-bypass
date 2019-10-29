@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+    <meta charset="utf-8">
+		<title>Home - Website</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<style>
+			body {
+			margin: 0;
+			}
+
+			#url-box {
+			margin: .25em;
+			padding: .75em;
+			border: .125em solid #000;
+			border-radius: .25em;
+			background-image: linear-gradient(to bottom, #e5e5e5, #fafafa);
+			box-shadow: 0 .125em #a0a0a0 inset;
+			}
+
+			.btn {
+			margin: .25em;
+			padding: .75em;
+			border: .125em solid black;
+			border-radius: .25em;
+			background-color: #e5e5e5;
+			background-image: linear-gradient(to bottom, #fafafa, #e5e5e5);
+			box-shadow: 0 -.125em #a0a0a0 inset;
+			}
+
+			.btn:focus {
+				background-image: linear-gradient(to bottom, #e5e5e5, #fafafa);
+				box-shadow: 0 .125em #a0a0a0 inset;
+			}
+
+			#nav-box {
+				padding: .25em;
+				border-bottom: .25em solid #000;
+			}
+
+			#nav-box p {
+				display: inline;
+			}
+
+			#iframe-box {
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			}
+
+			iframe {
+			margin: 0em;
+			width: 100%;
+			height: 100%;
+			border: none;
+			resize: vertical;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="nav-box">
+			<p>v0.0.1</p>
+			<input type="text" id="url-box" placeholder="URL or search">
+			<button type="button" tabindex="0" id="go-btn" class="btn">Go</button>
+			</div>
+		<div id="iframe-box">
+		<iframe id="browser-box" src="https://bing.com/">
+		</iframe>
+		</div>
+		<script>
+			var browserBox = document.getElementById("browser-box");
+			var urlBox = document.getElementById("url-box");
+			var goBtn = document.getElementById("go-btn");
+			goBtn.onclick = function() {
+					if (urlBox.value.indexOf("http://") !== -1 || urlBox.value.indexOf("https://") !== -1) {
+					browserBox.src = urlBox.value;
+				} else {
+					browserBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
+				}
+			}
+		</script>
+	</body>
+</html>
