@@ -9,6 +9,30 @@
 			margin: 0;
 			}
 
+			.full-margin {
+				margin: 1em !important;
+			}
+
+			.half-margin {
+				margin: .5em !important;
+			}
+
+			.full-padding {
+				padding: 1em !important;
+			}
+
+			.half-padding {
+				padding: .5em !important;
+			}
+
+			.quarter-padding {
+				padding: .25em !important;
+			}
+
+			.eighth-padding {
+				padding: .125em !important;
+			}
+
 			#url-box {
 			margin: .25em;
 			padding: .75em;
@@ -31,6 +55,10 @@
 			.btn:focus {
 				background-image: linear-gradient(to bottom, #e5e5e5, #fafafa);
 				box-shadow: 0 .125em #a0a0a0 inset;
+			}
+
+			#fullscreen-btn {
+				float: right;
 			}
 
 			#nav-box {
@@ -63,6 +91,7 @@
 			<p>v0.0.1</p>
 			<input type="text" id="url-box" placeholder="URL or search">
 			<button type="button" tabindex="0" id="go-btn" class="btn">Go</button>
+			<button type="button" id="fullscreen-btn" class="btn eighth-padding"><i class="material-icons">fullscreen</i></button>
 			</div>
 		<div id="iframe-box">
 		<iframe id="browser-box" src="https://bing.com/">
@@ -72,11 +101,19 @@
 			var browserBox = document.getElementById("browser-box");
 			var urlBox = document.getElementById("url-box");
 			var goBtn = document.getElementById("go-btn");
+			var fullscreenBtn = document.getElementById("fullscreen-btn");
 			goBtn.onclick = function() {
 					if (urlBox.value.indexOf("http://") !== -1 || urlBox.value.indexOf("https://") !== -1) {
 					browserBox.src = urlBox.value;
 				} else {
 					browserBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
+				}
+			}
+			fullscreenBtn.onclick = function() {
+				if (browserBox.requestFullscreen) {
+					browserBox.requestFullscreen();
+				} else if (browserBox.msRequestFullscreen) {
+					browserBox.msRequestFullscreen();
 				}
 			}
 		</script>
