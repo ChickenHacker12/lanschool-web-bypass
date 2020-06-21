@@ -4,7 +4,12 @@
     <meta charset="utf-8">
 		<title>Home - Website</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 		<style>
+			* {
+				font-family: 'Open Sans', sans-serif;
+			}
+
 			body {
 			margin: 0;
 			}
@@ -33,6 +38,17 @@
 				padding: .125em !important;
 			}
 
+			.info-box {
+				padding: .25em;
+				border: .125em solid #4080ff;
+				background-color: #80c0ff;
+				color: #000;
+			}
+
+			.hidden {
+				display: none;
+			}
+
 			#url-box {
 			margin: .25em;
 			padding: .75em;
@@ -59,6 +75,7 @@
 
 			#fullscreen-btn {
 				float: right;
+				background-image: linear-gradient(to bottom, #ffbf40, #ff8040);
 			}
 
 			#nav-box {
@@ -70,7 +87,7 @@
 				display: inline;
 			}
 
-			#iframe-box {
+			#browser-box {
 			margin: 0;
 			width: 100%;
 			height: 100%;
@@ -84,37 +101,115 @@
 			border: none;
 			resize: vertical;
 		}
+
+		.window-box {
+			z-index: 5;
+			top: 0;
+			left: 0;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, .5);
+		}
+
+		.dialog-box {
+			margin: .5rem;
+			border: .125rem solid #404040;
+			border-radius: .25rem;
+			padding: 1rem;
+			background-color: #fff;
+		}
+
+
 		</style>
 	</head>
 	<body>
 		<div id="nav-box">
-			<p>v0.0.1</p>
 			<input type="text" id="url-box" placeholder="URL or search">
 			<button type="button" tabindex="0" id="go-btn" class="btn">Go</button>
 			<button type="button" id="fullscreen-btn" class="btn eighth-padding"><i class="material-icons">fullscreen</i></button>
+			<button class="btn" id="help-btn" class="btn"><span class="material-icons">
+help
+</span></button>
 			</div>
-		<div id="iframe-box">
-		<iframe id="browser-box" src="https://bing.com/">
+			<div class="window-box hidden" id="help-box">
+			<div class="dialog-box" role="dialog">
+				<h2>LanSchool Web Bypass</h2>
+				<h3>About</h3>
+				<p>Version: 0.0.1</p>
+				<p>This bypasses the LanSchool web browser extension. It does not bypass firewalls. The extension does not block the file:// origin, only http:// and https://.</p>
+				<h3>Get help</h3>
+				<ul>
+					<li><p>Some websites will break (X-Frame-Options header) to protect them from clickjacking attacks</p></li>
+					<li><p>This needs to be hosted locally ('file://')</p></li>
+					<li><p>This does not proxy or bypass firewalls</p></li>
+				</ul>
+				<h3>Report a problem</h3>
+				<a href="https://github.com/ChickenHacker12/lanschool-web-bypass">View on GitHub</a>
+				<button id="close-help-btn" class="btn"><i class="material-icons">close</i>Close dialog</button>
+			</div>
+		</div>
+		<div id="browser-box">
+		<iframe id="iframe-box" src="https://bing.com/">
 		</iframe>
 		</div>
 		<script>
+			//Changing this doesn't make you a 'hacker' :D
+			var helpBtn = document.getElementById("help-btn");
+			var closeHelpBtn = document.getElementById("close-help-btn");
+			var helpBox = document.getElementById("help-box");
 			var browserBox = document.getElementById("browser-box");
 			var urlBox = document.getElementById("url-box");
 			var goBtn = document.getElementById("go-btn");
 			var fullscreenBtn = document.getElementById("fullscreen-btn");
-			goBtn.onclick = function() {
-					if (urlBox.value.indexOf("http://") !== -1 || urlBox.value.indexOf("https://") !== -1) {
-					browserBox.src = urlBox.value;
+			var iframeBox = document.getElementById("iframe-box");
+
+			function go() {
+				var isExpression = urlBox.value.search(/^http?(s):\/\//);
+				if (isExpression !== -1) {
+				iframeBox.src = urlBox.value;
 				} else {
-					browserBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
+					iframeBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
+				}
+				// if (urlBox.value.indexOf("http://") !== -1 || urlBox.value.indexOf("https://") !== -1) {
+				// browserBox.src = urlBox.value;
+				// } else {
+				// 	browserBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
+				// }
+			}
+
+			urlBox.onkeypress = function(event) {
+				var key = event.which || event.keyCode;
+				if (key == 13) {
+					go();
 				}
 			}
+
+			goBtn.onclick = go;
 			fullscreenBtn.onclick = function() {
 				if (browserBox.requestFullscreen) {
 					browserBox.requestFullscreen();
 				} else if (browserBox.msRequestFullscreen) {
 					browserBox.msRequestFullscreen();
 				}
+			}
+			// Dialog
+			function closeDialog(dialog) {
+				dialog.classList.add("hidden");
+				dialog.setAttribute("aria-hidden", "true");
+			}
+
+			function openDialog(dialog) {
+				dialog.classList.remove("hidden");
+				dialog.removeAttribute("aria-hidden");
+			}
+
+			helpBtn.onclick = function () {
+				openDialog(helpBox);
+			}
+
+			closeHelpBtn.onclick = function () {
+				closeDialog(helpBox);
 			}
 		</script>
 	</body>
