@@ -1,6 +1,10 @@
 # lanschool-web-bypass
 Bypass the LanSchool Chrome Web extension when it blocks websites.
 
+* Is this a virus/malware?
+This is not malware. It is free and open-source.
+Virus scan: https://www.virustotal.com/gui/file/240df5f003216b0167cd0409e99108b62e9dda776f6d7b80e7b97ac8c9e8d772/
+
 ## Installation
 1. Download "index.html" (to a USB drive at home if you can't get here).
 
