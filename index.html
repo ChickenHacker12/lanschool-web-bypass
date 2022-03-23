@@ -155,6 +155,7 @@ help
 		</div>
 		<script>
 			//Changing this doesn't make you a 'hacker' :D
+			var navBox = document.getElementById("nav-box");
 			var helpBtn = document.getElementById("help-btn");
 			var closeHelpBtn = document.getElementById("close-help-btn");
 			var helpBox = document.getElementById("help-box");
@@ -210,6 +211,12 @@ help
 
 			closeHelpBtn.onclick = function () {
 				closeDialog(helpBox);
+			}
+
+			window.onresize = resizeBrowser();
+
+			function resizeBrowser() {
+				browserBox.style.height = `${window.innerHeight - navBox.getBoundingClientRect().height}px`;
 			}
 		</script>
 	</body>
