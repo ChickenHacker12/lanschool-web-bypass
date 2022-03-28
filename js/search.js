@@ -1,3 +1,6 @@
+let searchHistory = [];
+let date = new Date();
+
 function renderSuggestions(suggestions) {
   suggestionBox.innerHTML = null;
   suggestions.forEach(function (suggestion) {
@@ -7,9 +10,10 @@ function renderSuggestions(suggestions) {
     suggestionHeader.className = "dropdown-header";
     suggestionSectionBox.appendChild(suggestionHeader);
     suggestionHeader.innerText = suggestion.name;
-    let suggestionLink = document.createElement("buttion");
+    let suggestionLink = document.createElement("button");
     suggestionLink.className = "dropdown-item";
     suggestionLink.innerHTML = suggestion.result;
+    suggestionLink.addEventListener("click", search(suggestion.result));
     suggestionSectionBox.appendChild(suggestionLink);
     // suggestionBox.innerHTML = `
     // <h3 class="dropdown-header">${suggestion}</h3>
@@ -55,4 +59,21 @@ function getSuggestions(inputString) {
   }
 
   return suggestions;
+}
+
+function search(query) {
+  let keywords = query.split(" ");
+  searchHistory.push(
+    {
+      query,
+      keywords,
+      time: `${date.getMonth() + 1} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`
+    }
+  );
+  return "ok";
+}
+
+function logHistory() {
+  console.log("Search history:");
+  console.log(searchHistory);
 }
