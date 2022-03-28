@@ -1,0 +1,20 @@
+{
+  "name": "lanschool-web-bypass",
+  "version": "0.2.0",
+  "description": "Bypass the LanSchool Chrome Web extension when it blocks websites.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChickenHacker12/lanschool-web-bypass.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChickenHacker12/lanschool-web-bypass/issues"
+  },
+  "homepage": "https://github.com/ChickenHacker12/lanschool-web-bypass#readme"
+}
