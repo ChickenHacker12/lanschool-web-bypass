@@ -22,7 +22,7 @@ function renderSuggestions(suggestions) {
 
 function getSuggestions(inputString) {
   let suggestions = [];
-  if (inputString.search(/(\.[a-z]{2,})$/) !== -1) {
+  if (inputString.search(/^([^https:\/\/]\w*\.*\w+\.[a-z]{2,}(?:\/?\w+\/?)*)$/) !== -1) {
     // URL
     suggestions.push({ name: "URL", result: `http://${inputString}` });
   }
