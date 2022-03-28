@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/ChickenHacker12/lanschool-web-bypass/issues"
   },
-  "homepage": "https://github.com/ChickenHacker12/lanschool-web-bypass#readme"
+  "homepage": "https://github.com/ChickenHacker12/lanschool-web-bypass#readme",
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
 }
