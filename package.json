@@ -4,7 +4,8 @@
   "description": "Bypass the LanSchool Chrome Web extension when it blocks websites.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
