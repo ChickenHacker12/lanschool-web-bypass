@@ -1,3 +1,6 @@
+import { renderSuggestions, getSuggestions, search } from "./search.js";
+
+
 //Changing this doesn't make you a 'hacker' :D
 var navBox = document.getElementById("nav-box");
 var helpBtn = document.getElementById("help-btn");

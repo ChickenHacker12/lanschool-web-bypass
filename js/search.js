@@ -1,7 +1,7 @@
 let searchHistory = [];
 let date = new Date();
 
-function renderSuggestions(suggestions) {
+export function renderSuggestions(suggestions) {
   suggestionBox.innerHTML = null;
   suggestions.forEach(function (suggestion) {
     console.log(suggestion);
@@ -24,7 +24,7 @@ function renderSuggestions(suggestions) {
   });
 }
 
-function getSuggestions(inputString) {
+export function getSuggestions(inputString) {
   let suggestions = [];
   if (inputString.search(/^([^https:\/\/]\w*\.*\w+\.[a-z]{2,}(?:\/?\w+\/?)*)$/) !== -1) {
     // URL
@@ -61,7 +61,7 @@ function getSuggestions(inputString) {
   return suggestions;
 }
 
-function search(query) {
+export function search(query) {
   let keywords = query.split(" ");
   searchHistory.push(
     {
