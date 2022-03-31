@@ -163,6 +163,7 @@ help
 			var goBtn = document.getElementById("go-btn");
 			var fullscreenBtn = document.getElementById("fullscreen-btn");
 			var iframeBox = document.getElementById("iframe-box");
+			var navBox = document.getElementById("nav-box");
 
 			function go() {
 				var isExpression = urlBox.value.search(/^http?(s):\/\//);
@@ -215,7 +216,7 @@ help
 			window.onresize = resizeBrowser();
 
 			function resizeBrowser() {
-			  browserBox.style.height = (window.innerHeight - navBox.getBoundingClientRect().height) + "px";
+			  iframeBox.style.height = (window.innerHeight - navBox.getBoundingClientRect().height) + "px";
 			}
 		</script>
 	</body>
