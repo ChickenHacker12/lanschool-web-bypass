@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ChickenHacker12/lanschool-web-bypass#readme",
   "devDependencies": {
     "bootstrap": "^4.6.1",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "node-sass": "^7.0.1",
