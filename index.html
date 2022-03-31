@@ -211,6 +211,12 @@ help
 			closeHelpBtn.onclick = function () {
 				closeDialog(helpBox);
 			}
+
+			window.onresize = resizeBrowser();
+
+			function resizeBrowser() {
+			  browserBox.style.height = (window.innerHeight - navBox.getBoundingClientRect().height) + "px";
+			}
 		</script>
 	</body>
 </html>
