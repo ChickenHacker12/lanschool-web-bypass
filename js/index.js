@@ -1,5 +1,5 @@
 import { renderSuggestions, getSuggestions, search } from "./search.js";
-import "../css/style.css";
+// import "../css/style.css";
 
 //Changing this doesn't make you a 'hacker' :D
 var navBox = document.getElementById("nav-box");
