@@ -12,7 +12,7 @@ export { toolbarBox, browserBox };
 import { resizeBrowser } from "./resize.js";
 
 function go() {
-  let isExpression = searchBox.value.search(/^http?(s):\/\//);
+  let isExpression = searchBox.value.search(/^http(s)?:\/\//);
   if (isExpression !== -1) {
   browserBox.src = searchBox.value;
   } else {
