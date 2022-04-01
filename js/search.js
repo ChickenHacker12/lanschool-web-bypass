@@ -1,3 +1,5 @@
+import { browserBox } from "./index.js";
+
 let searchHistory = [];
 let date = new Date();
 
@@ -20,13 +22,13 @@ export function renderSuggestions(suggestions) {
     // <li class="dropdown-item">${suggestion.keys()[0]}</li>
     // `;
     suggestionBox.appendChild(suggestionSectionBox);
-    suggestionBox.classList.add("d-block");
+    showSuggestions();
   });
 }
 
 export function getSuggestions(inputString) {
   let suggestions = [];
-  if (inputString.search(/^([^https:\/\/]\w*\.*\w+\.[a-z]{2,}(?:\/?\w+\/?)*)$/) !== -1) {
+  if (inputString.search(/^(([^(?:https:\/\/)]*\.)*\w+\.[a-z]{2,}(?:\/?[\w-]+\/?)*([\w-]\.[a-z]+)?)$/) !== -1) {
     // URL
     suggestions.push({ name: "URL", result: `http://${inputString}` });
   }
@@ -63,17 +65,31 @@ export function getSuggestions(inputString) {
 
 export function search(query) {
   let keywords = query.split(" ");
+  // ${searchBox.value.replace(/ /g, "+")}
+  let url = `https://bing.com/search?q=${keywords.join("+")}`;
   searchHistory.push(
     {
       query,
       keywords,
-      time: `${date.getMonth() + 1} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`
+      time: `${date.getMonth() + 1} ${date.getDate()}, ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`,
+      url
     }
   );
-  return "ok";
+
+  browserBox.src = url;
 }
 
 function logHistory() {
   console.log("Search history:");
   console.log(searchHistory);
+}
+
+function showSuggestions() {
+  suggestionBox.classList.add("d-block");
+  // suggestionBox.classList.remove("d-none");
+}
+
+function hideSuggestions() {
+  suggestionBox.classList.remove("d-block");
+  // suggestionBox.classList.add("d-none");
 }

@@ -8,21 +8,25 @@ let fullscreenBtn = document.getElementById("fullscreen-btn");
 
 let browserBox = document.getElementById("browser-box");
 
-export { toolbarBox, browserBox };
+export { toolbarBox, browserBox, searchBox };
 import { resizeBrowser } from "./resize.js";
+
+goBtn.onclick = go;
+
+window.onresize = resizeBrowser(window.innerHeight);
 
 function go() {
   let isExpression = searchBox.value.search(/^http(s)?:\/\//);
   if (isExpression !== -1) {
-  browserBox.src = searchBox.value;
+    // Redirect
+    browserBox.src = searchBox.value;
+  } else if (searchBox.value.search(/^(\w*\.)*\w+\.[a-z]{2,}(?:\/?[\w-]+\/?)*$/) !== -1) {
+    // Append protocol and redirect
+    browserBox.src = `http://${searchBox.value}`;
   } else {
-    browserBox.src = "https://bing.com/search?q=" + searchBox.value.replace(/ /g, "+");
+    // Search
+    search(searchBox.value);
   }
-  // if (urlBox.value.indexOf("http://") !== -1 || urlBox.value.indexOf("https://") !== -1) {
-  // browserBox.src = urlBox.value;
-  // } else {
-  // 	browserBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
-  // }
 }
 
 // searchBox.onkeypress = function(event) {
@@ -32,7 +36,7 @@ function go() {
 //   }
 // }
 
-goBtn.onclick = go;
+
 fullscreenBtn.onclick = function() {
   if (browserBox.requestFullscreen) {
     browserBox.requestFullscreen();
@@ -58,5 +62,3 @@ fullscreenBtn.onclick = function() {
 // closeHelpBtn.onclick = function () {
 //   closeDialog(helpBox);
 // }
-
-window.onresize = resizeBrowser(window.innerHeight);
