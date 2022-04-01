@@ -4,7 +4,11 @@ import { renderSuggestions, getSuggestions, search } from "./search.js";
 // DOM references
 // Toolbar
 let toolbarBox = document.getElementById("toolbar-box");
+
+let backBtn = document.getElementById("back-btn");
+let forwardBtn = document.getElementById("forward-btn");
 let refreshBtn = document.getElementById("refresh-btn");
+let homeBtn = document.getElementById("home-btn");
 let searchBox = document.getElementById("search-box");
 let goBtn = document.getElementById("go-btn");
 let fullscreenBtn = document.getElementById("fullscreen-btn");
@@ -12,12 +16,18 @@ let openBtn = document.getElementById("open-btn");
 
 // Browser
 let browserBox = document.getElementById("browser-box");
+const homeUrl = browserBox.src;
 
-export { toolbarBox, browserBox, searchBox };
+export { toolbarBox, backBtn, forwardBtn, browserBox, searchBox };
 import { resizeBrowser } from "./resize.js";
 import { enableHistory, disableHistory, history } from "./history.js";
 
+backBtn.onclick = goBack;
+forwardBtn.onclick = goForward;
+
 refreshBtn.onclick = refresh;
+
+homeBtn.onclick = goHome;
 
 goBtn.onclick = go;
 
@@ -27,8 +37,31 @@ enableHistory();
 // window.onblur = disableHistory;
 
 
+function goBack() {
+  disableHistory();
+  browserBox.src = history[history.length - 2].url;
+  if (browserBox.src = history[history.length - 2].url) {
+    backBtn.setAttribute("disabled", "");
+  }
+  // console.log(history);
+}
+
+function goForward() {
+  disableHistory();
+  searchBox.value = browserBox.src  = history[history.length - 1].url;
+  if (browserBox.src = history[history.length - 1].url) {
+    forwardBtn.setAttribute("disabled", "");
+  }
+}
+
 function refresh() {
-  browserBox.src = history[history.length - 1] || browserBox.src;
+  enableHistory();
+  browserBox.src = browserBox.src;
+}
+
+function goHome() {
+  enableHistory();
+  browserBox.src = homeUrl;
 }
 
 function go() {
@@ -43,6 +76,8 @@ function go() {
     // Search
     search(searchBox.value);
   }
+
+  enableHistory();
 }
 
 searchBox.onkeypress = function(event) {
