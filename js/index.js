@@ -1,19 +1,35 @@
 import { renderSuggestions, getSuggestions, search } from "./search.js";
 
+
 // DOM references
+// Toolbar
 let toolbarBox = document.getElementById("toolbar-box");
+let refreshBtn = document.getElementById("refresh-btn");
 let searchBox = document.getElementById("search-box");
 let goBtn = document.getElementById("go-btn");
 let fullscreenBtn = document.getElementById("fullscreen-btn");
+let openBtn = document.getElementById("open-btn");
 
+// Browser
 let browserBox = document.getElementById("browser-box");
 
 export { toolbarBox, browserBox, searchBox };
 import { resizeBrowser } from "./resize.js";
+import { enableHistory, disableHistory, history } from "./history.js";
+
+refreshBtn.onclick = refresh;
 
 goBtn.onclick = go;
 
 window.onresize = resizeBrowser(window.innerHeight);
+
+enableHistory();
+// window.onblur = disableHistory;
+
+
+function refresh() {
+  browserBox.src = history[history.length - 1] || browserBox.src;
+}
 
 function go() {
   let isExpression = searchBox.value.search(/^http(s)?:\/\//);
@@ -29,14 +45,14 @@ function go() {
   }
 }
 
-// searchBox.onkeypress = function(event) {
-//   var key = event.which || event.keyCode;
-//   if (key == 13) {
-//     go();
-//   }
-// }
+searchBox.onkeypress = function(event) {
+  let key = event.which || event.keyCode;
+  if (key == 13) {
+    go();
+  }
+}
 
-
+// Fullscreen
 fullscreenBtn.onclick = function() {
   if (browserBox.requestFullscreen) {
     browserBox.requestFullscreen();
@@ -44,6 +60,12 @@ fullscreenBtn.onclick = function() {
     browserBox.msRequestFullscreen();
   }
 }
+
+// Open in new tab
+openBtn.onclick = function() {
+  window.open(browserBox.src, "_blank");
+}
+
 // Dialog
 // function closeDialog(dialog) {
 //   dialog.classList.add("hidden");
