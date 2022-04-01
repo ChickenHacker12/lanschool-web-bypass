@@ -1,4 +1,4 @@
-import { browserBox } from "./index.js";
+import { suggestionsBox as suggestionBox, browserBox } from "./index.js";
 
 let searchHistory = [];
 let date = new Date();
@@ -15,7 +15,17 @@ export function renderSuggestions(suggestions) {
     let suggestionLink = document.createElement("button");
     suggestionLink.className = "dropdown-item";
     suggestionLink.innerHTML = suggestion.result;
-    suggestionLink.addEventListener("click", search(suggestion.result));
+    suggestionLink.addEventListener("click", () => {
+      hideSuggestions();
+      if (suggestion.name == "URL") {
+        // Redirect
+        browserBox.src = suggestion.result;
+      } else {
+        // Search
+        search(suggestion.result);
+      }
+
+    });
     suggestionSectionBox.appendChild(suggestionLink);
     // suggestionBox.innerHTML = `
     // <h3 class="dropdown-header">${suggestion}</h3>
@@ -32,7 +42,7 @@ export function getSuggestions(inputString) {
     // URL
     suggestions.push({ name: "URL", result: `http://${inputString}` });
   }
-  if (inputString.search(/\d+ [*\/+-] \d+/) !== -1) {
+  if (inputString.search(/^\d+ [*\/+-] \d+$/) !== -1) {
     // expression
     let sourceName = "Calculator";
     let operator = inputString.match(/[*\/+-]/)[0];
@@ -64,7 +74,7 @@ export function getSuggestions(inputString) {
 }
 
 export function search(query) {
-  let keywords = query.split(" ");
+  let keywords = query.toString().split(" ");
   // ${searchBox.value.replace(/ /g, "+")}
   let url = `https://bing.com/search?q=${keywords.join("+")}`;
   searchHistory.push(
@@ -89,7 +99,7 @@ function showSuggestions() {
   // suggestionBox.classList.remove("d-none");
 }
 
-function hideSuggestions() {
+export function hideSuggestions() {
   suggestionBox.classList.remove("d-block");
   // suggestionBox.classList.add("d-none");
 }

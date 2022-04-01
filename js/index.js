@@ -1,16 +1,22 @@
-import { renderSuggestions, getSuggestions, search } from "./search.js";
+import { renderSuggestions, getSuggestions, search, hideSuggestions } from "./search.js";
 
 
 // DOM references
 // Toolbar
 let toolbarBox = document.getElementById("toolbar-box");
 
+// Navigation
 let backBtn = document.getElementById("back-btn");
 let forwardBtn = document.getElementById("forward-btn");
 let refreshBtn = document.getElementById("refresh-btn");
 let homeBtn = document.getElementById("home-btn");
+
+// Search
 let searchBox = document.getElementById("search-box");
+let suggestionsBox = document.getElementById("suggestions-box");
 let goBtn = document.getElementById("go-btn");
+
+// Other
 let fullscreenBtn = document.getElementById("fullscreen-btn");
 let openBtn = document.getElementById("open-btn");
 
@@ -18,17 +24,23 @@ let openBtn = document.getElementById("open-btn");
 let browserBox = document.getElementById("browser-box");
 const homeUrl = browserBox.src;
 
-export { toolbarBox, backBtn, forwardBtn, browserBox, searchBox };
+export { toolbarBox, backBtn, forwardBtn, suggestionsBox, browserBox, searchBox };
 import { resizeBrowser } from "./resize.js";
 import { enableHistory, disableHistory, history } from "./history.js";
 
 backBtn.onclick = goBack;
 forwardBtn.onclick = goForward;
-
 refreshBtn.onclick = refresh;
-
 homeBtn.onclick = goHome;
 
+searchBox.onfocus = function() {
+  searchBox.select();
+}
+searchBox.oninput = function() {
+  let suggestions = getSuggestions(searchBox.value);
+  renderSuggestions(suggestions);
+}
+// searchBox.onblur = hideSuggestions;
 goBtn.onclick = go;
 
 window.onresize = resizeBrowser(window.innerHeight);
