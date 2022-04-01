@@ -20,7 +20,7 @@ function go() {
   if (isExpression !== -1) {
     // Redirect
     browserBox.src = searchBox.value;
-  } else if (searchBox.value.search(/^(\w*\.)*\w+\.[a-z]{2,}(?:\/?[\w-]+\/?)*$/) !== -1) {
+  } else if (searchBox.value.search(/^(\w*\.)*\w+\.[a-z]{2,}(?:\/?[\w-]+\/?)*([\w-]\.[a-z]+)?$/) !== -1) {
     // Append protocol and redirect
     browserBox.src = `http://${searchBox.value}`;
   } else {
