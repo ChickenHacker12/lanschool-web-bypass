@@ -163,6 +163,7 @@ help
 			var goBtn = document.getElementById("go-btn");
 			var fullscreenBtn = document.getElementById("fullscreen-btn");
 			var iframeBox = document.getElementById("iframe-box");
+			var navBox = document.getElementById("nav-box");
 
 			function go() {
 				var isExpression = urlBox.value.search(/^http?(s):\/\//);
@@ -210,6 +211,12 @@ help
 
 			closeHelpBtn.onclick = function () {
 				closeDialog(helpBox);
+			}
+
+			window.onresize = resizeBrowser();
+
+			function resizeBrowser() {
+			  iframeBox.style.height = (window.innerHeight - navBox.getBoundingClientRect().height) + "px";
 			}
 		</script>
 	</body>
