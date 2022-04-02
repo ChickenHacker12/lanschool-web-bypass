@@ -19,14 +19,19 @@ let goBtn = document.getElementById("go-btn");
 // Other
 let fullscreenBtn = document.getElementById("fullscreen-btn");
 let openBtn = document.getElementById("open-btn");
+let helpBtn = document.getElementById("help-btn");
+let helpBox = document.getElementById("help-box");
+let closeHelpBtn = document.getElementById("close-help-btn");
+
 
 // Browser
 let browserBox = document.getElementById("browser-box");
 const homeUrl = browserBox.src;
 
-export { toolbarBox, backBtn, forwardBtn, suggestionsBox, browserBox, searchBox };
+export { toolbarBox, backBtn, forwardBtn, suggestionsBox, browserBox, searchBox, helpBox };
 import { resizeBrowser } from "./resize.js";
 import { enableHistory, disableHistory, history } from "./history.js";
+import { showHelp, hideHelp } from "./help.js";
 
 backBtn.onclick = goBack;
 forwardBtn.onclick = goForward;
@@ -42,6 +47,9 @@ searchBox.oninput = function() {
 }
 // searchBox.onblur = hideSuggestions;
 goBtn.onclick = go;
+
+helpBtn.onclick = showHelp;
+closeHelpBtn.onclick = hideHelp;
 
 window.onresize = resizeBrowser(window.innerHeight);
 
