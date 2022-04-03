@@ -5,7 +5,8 @@ module.exports = {
   entry: "./js/index.js",
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: "./index.html",
+      inject: "body"
     })
   ],
   module: {
