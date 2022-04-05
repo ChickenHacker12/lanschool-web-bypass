@@ -5,126 +5,11 @@
 		<title>Home - Website</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-		<style>
-			* {
-				font-family: 'Open Sans', sans-serif;
-			}
-
-			body {
-			margin: 0;
-			}
-
-			.full-margin {
-				margin: 1em !important;
-			}
-
-			.half-margin {
-				margin: .5em !important;
-			}
-
-			.full-padding {
-				padding: 1em !important;
-			}
-
-			.half-padding {
-				padding: .5em !important;
-			}
-
-			.quarter-padding {
-				padding: .25em !important;
-			}
-
-			.eighth-padding {
-				padding: .125em !important;
-			}
-
-			.info-box {
-				padding: .25em;
-				border: .125em solid #4080ff;
-				background-color: #80c0ff;
-				color: #000;
-			}
-
-			.hidden {
-				display: none;
-			}
-
-			#url-box {
-			margin: .25em;
-			padding: .75em;
-			border: .125em solid #000;
-			border-radius: .25em;
-			background-image: linear-gradient(to bottom, #e5e5e5, #fafafa);
-			box-shadow: 0 .125em #a0a0a0 inset;
-			}
-
-			.btn {
-			margin: .25em;
-			padding: .75em;
-			border: .125em solid black;
-			border-radius: .25em;
-			background-color: #e5e5e5;
-			background-image: linear-gradient(to bottom, #fafafa, #e5e5e5);
-			box-shadow: 0 -.125em #a0a0a0 inset;
-			}
-
-			.btn:focus {
-				background-image: linear-gradient(to bottom, #e5e5e5, #fafafa);
-				box-shadow: 0 .125em #a0a0a0 inset;
-			}
-
-			#fullscreen-btn {
-				float: right;
-				background-image: linear-gradient(to bottom, #ffbf40, #ff8040);
-			}
-
-			#nav-box {
-				padding: .25em;
-				border-bottom: .25em solid #000;
-			}
-
-			#nav-box p {
-				display: inline;
-			}
-
-			#browser-box {
-			margin: 0;
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-			}
-
-			iframe {
-			margin: 0em;
-			width: 100%;
-			height: 100%;
-			border: none;
-			resize: vertical;
-		}
-
-		.window-box {
-			z-index: 5;
-			top: 0;
-			left: 0;
-			position: fixed;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, .5);
-		}
-
-		.dialog-box {
-			margin: .5rem;
-			border: .125rem solid #404040;
-			border-radius: .25rem;
-			padding: 1rem;
-			background-color: #fff;
-		}
-
-
-		</style>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div id="nav-box">
+		<!-- <div id="nav-box">
 			<input type="text" id="url-box" placeholder="URL or search">
 			<button type="button" tabindex="0" id="go-btn" class="btn">Go</button>
 			<button type="button" id="fullscreen-btn" class="btn eighth-padding"><i class="material-icons">fullscreen</i></button>
@@ -152,72 +37,99 @@ help
 		<div id="browser-box">
 		<iframe id="iframe-box" src="https://bing.com/">
 		</iframe>
+		</div> -->
+		<div id="toolbar-box" class="container-md">
+  <div class="row border-bottom">
+    <div class="btn-toolbar d-flex justify-content-between my-3">
+      <div class="btn-group mx-2">
+        <button id="back-btn" class="btn btn-secondary material-icons" title="Back" disabled>arrow_back</button>
+        <button id="forward-btn" class="btn btn-secondary material-icons" title="Forward" disabled>arrow_forward</button>
+				<button id="refresh-btn" class="btn btn-secondary material-icons" title="Refresh">refresh</button>
+        <button id="home-btn" class="btn btn-secondary material-icons" title="Home">home</button>
+      </div>
+      <div class="input-group flex-fill flex-grow-1 mr-2 mx-md-3 mx-lg-4 mx-xl-5">
+        <div class="dropdown">
+          <input id="search-box" type="text" class="form-control" placeholder="https://example.com/">
+          <ul id="suggestions-box" class="dropdown-menu">
+          </ul>
+        </div>
+        <div class="input-group-append">
+          <button id="go-btn" class="btn btn-outline-primary mr-2">Go</button>
+        </div>
+      </div>
+      <button id="fullscreen-btn" class="btn btn-primary mr-2 material-icons" title="Fullscreen">fullscreen</button>
+      <div class="btn-group d-none d-lg-flex mr-2">
+        <button id="open-btn" class="btn btn-light material-icons" title="Open in new tab">open_in_new</button>
+        <button class="btn btn-light material-icons" disabled>share</button>
+      </div>
+      <div class="btn-group d-none d-sm-flex">
+        <button class="btn btn-light material-icons" disabled>settings</button>
+        <button id="help-btn" class="btn btn-light material-icons" title="Help/about">help_outline</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<iframe id="browser-box" class="embed-respsonsive-item w-100 border-0" src="https://bing.com/"></iframe>
+<!-- <div class="container-md">
+  <h2>Settings</h2>
+  <h3>General</h3>
+  <label for="">Homepage</label>
+  <input type="url" class="form-control" placeholder="https://example.com/">
+  <h3>Security</h3>
+  <p>Enabling these features may break some websites.</p>
+  <div class="form-check">
+    <input id="secure-box" class="form-check-input" type="checkbox" name="">
+    <label class="form-check-label" for="secure-box">Lockdown mode</label>
+
+  </div>
+  <small>Enables the <code>sandbox</code> attribute.</small>
+  <button class="btn btn-success ml-auto">Save</button>
+</div> -->
+<div id="help-box" class="container-md flex-md-row-reverse mt-3 d-none">
+	<div class="row">
+		<div class="col-8 col-lg-10 col-xl-11">
+			<h2>About</h2>
 		</div>
-		<script>
-			//Changing this doesn't make you a 'hacker' :D
-			var helpBtn = document.getElementById("help-btn");
-			var closeHelpBtn = document.getElementById("close-help-btn");
-			var helpBox = document.getElementById("help-box");
-			var browserBox = document.getElementById("browser-box");
-			var urlBox = document.getElementById("url-box");
-			var goBtn = document.getElementById("go-btn");
-			var fullscreenBtn = document.getElementById("fullscreen-btn");
-			var iframeBox = document.getElementById("iframe-box");
-			var navBox = document.getElementById("nav-box");
+		<div class="col-4 col-lg-2 col-xl-1">
+			<button id="close-help-btn" class="btn btn-secondary btn-block material-icons" title="Close">close</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-xl-3">
+			<div class="card border-info">
+				<div class="card-body">
+					<h3>lanschool-web-bypass</h3>
+					<p>Version: v0.2.0</p>
+					<p>This project is open-source.</p>
+					<a class="btn btn-info" href="https://github.com/ChickenHacker12/lanschool-web-bypass/" target="_blank">Repository</a>
+					<a class="btn btn-light material-icons" href="https://github.com/ChickenHacker12/lanschool-web-bypass/issues" target="_blank">bug_report</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8 col-xl-9">
+			<h3>Help</h3>
+			<h4>FAQ</h4>
+			<dd>
+				<dt>Purpose</dt>
+				<dd>It lets you browse the web in a way the LanSchool browser extension does not detect and block.</dd>
+				<dt>Filtering bypass</dt>
+				<dd>This cannot proxy or bypass firewalls. Sorry.</dd>
+				<dt>Broken websites/loading error</dt>
+				<dd>Some websites prohibit themselves from being embeded in other webpages (for security reasons). Opening them in a new tab should fix this.
+					<small>This is caused by the <code>X-Frame-Options</code> HTTP header.</small>
+				</dd>
+				<dt>Purpose</dt>
+				<dd>It lets you browse the web in a way the LanSchool browser extension does not detect and block.</dd>
+				<dt>Search Engine</dt>
+				<dd>Bing(TM) is the only search engine that will work this way. (See broken websites.)</dd>
+				<dt>Privacy</dt>
+				<dd>This files stores all data locally and temporaily.</dd>
+			</dd>
+			<small>This project is not sponsored and/or affiliated with Microsoft Corporation or Bing Search.</small>
+		</div>
+	</div>
+</div>
 
-			function go() {
-				var isExpression = urlBox.value.search(/^http?(s):\/\//);
-				if (isExpression !== -1) {
-				iframeBox.src = urlBox.value;
-				} else {
-					iframeBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
-				}
-				// if (urlBox.value.indexOf("http://") !== -1 || urlBox.value.indexOf("https://") !== -1) {
-				// browserBox.src = urlBox.value;
-				// } else {
-				// 	browserBox.src = "https://bing.com/search?q=" + urlBox.value.replace(/ /g, "+");
-				// }
-			}
-
-			urlBox.onkeypress = function(event) {
-				var key = event.which || event.keyCode;
-				if (key == 13) {
-					go();
-				}
-			}
-
-			goBtn.onclick = go;
-			fullscreenBtn.onclick = function() {
-				if (browserBox.requestFullscreen) {
-					browserBox.requestFullscreen();
-				} else if (browserBox.msRequestFullscreen) {
-					browserBox.msRequestFullscreen();
-				}
-			}
-			// Dialog
-			function closeDialog(dialog) {
-				dialog.classList.add("hidden");
-				dialog.setAttribute("aria-hidden", "true");
-			}
-
-			function openDialog(dialog) {
-				dialog.classList.remove("hidden");
-				dialog.removeAttribute("aria-hidden");
-			}
-
-			helpBtn.onclick = function () {
-				openDialog(helpBox);
-			}
-
-			closeHelpBtn.onclick = function () {
-				closeDialog(helpBox);
-			}
-
-			window.onresize = resizeBrowser();
-
-			function resizeBrowser() {
-			  iframeBox.style.height = (window.innerHeight - navBox.getBoundingClientRect().height) + "px";
-			}
-		</script>
 	</body>
 </html>
