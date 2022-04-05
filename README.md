@@ -1,4 +1,8 @@
 # lanschool-web-bypass
+**This is a bug fix release/branch. (It fixes the iframe height bug.) This repo will be overhauled in a future update**
+
+**Downloads have been moved to releases.** Check there to download the HTML file.
+
 Bypass the LanSchool Chrome Web extension when it blocks websites.
 
 * Is this a virus/malware?
