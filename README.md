@@ -16,9 +16,15 @@ Virus scan: https://www.virustotal.com/gui/file/240df5f003216b0167cd0409e99108b6
 ## Building
 (These instructions are only for people who want to compile it themselves.)
 Make sure you have Node.js and npm installed. Then clone or fork the repository.
-    npm install
+
+```
+npm install
+```
 Run the the script that runs Webpack.
-    npm run build
+
+```
+npm run build
+```
 
 ## Support
 No help/support is available (except for the help in the file). Do not contact for support, only for bugs.
